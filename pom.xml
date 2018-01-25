@@ -12,6 +12,7 @@
         <module>ning-hibernate/ning-hibernate-heima</module>
         <module>ning-hibernate/ning-hibernate-heima-crm</module>
         <module>ning-storm/ning-storm-demo</module>
+        <module>ning-hadoop/ning-hadoop-yarn</module>
     </modules>
     <packaging>pom</packaging>
 
