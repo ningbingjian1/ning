@@ -11,12 +11,13 @@
         <module>ning-util/ning-util-scala</module>
         <module>ning-hibernate/ning-hibernate-heima</module>
         <module>ning-hibernate/ning-hibernate-heima-crm</module>
+        <module>ning-storm/ning-storm-demo</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         <junit.version>4.11</junit.version>
     </properties>
     <dependencyManagement>
