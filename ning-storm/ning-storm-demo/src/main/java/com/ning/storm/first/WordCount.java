@@ -29,7 +29,7 @@ public  class WordCount extends BaseBasicBolt {
 			counts.put(word,count);
 			System.out.println(word +"	"+count);
 
-			ShardedJedisTemplate.getInstance().set(ShardedJedisTemplate.class.getSimpleName(),word +"	"+count);
+			//ShardedJedisTemplate.getInstance().set(ShardedJedisTemplate.class.getSimpleName(),word +"	"+count);
 
 			// 发送单词和计数（分别对应字段word和count）
 			collector.emit(new Values(word, count));

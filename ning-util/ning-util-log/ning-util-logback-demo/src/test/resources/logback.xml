@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 控制台打印 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 日志滚动-->
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>./%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="adexpodata" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/hwdata/apache-tomcat-7.0.53/adexpodata_logs/adexpodata-%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.tcl.logoidentify.api.web.app.AppController" level="WARN" additivity="false">
+		<appender-ref ref="adexpodata" />
+	</logger>
+	<appender name="result" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/hwdata/apache-tomcat-7.0.53/result_logs/result-log-%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="com.tcl.logoidentify.api.service.ResultLogService" level="WARN" additivity="false">
+		<appender-ref ref="result" />
+	</logger>
+
+	<appender name="report" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<Key>clientType</Key>
+			<DefaultValue>null</DefaultValue>
+		</discriminator>
+		<sift>
+			<appender name="FILEx" class="ch.qos.logback.core.FileAppender">
+				<File>/hwdata/apache-tomcat-7.0.53/report_logs/report_${clientType}.log</File>
+				<Append>true</Append>
+				<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+					<charset>UTF-8</charset>
+					<layout class="ch.qos.logback.classic.PatternLayout">
+						<Pattern>
+							%msg%n
+						</Pattern>
+					</layout>
+				</encoder>
+			</appender>
+		</sift>
+	</appender>
+	<logger name="com.tcl.logoidentify.api.service.ReportLogService"
+		level="INFO" additivity="false">
+		<appender-ref ref="report" />
+	</logger>
+	
+	
+	<!-- project default level -->
+	<logger name="com.tcl.logoidentify" level="WARN" />
+	<root level="DEBUG">
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+	</root>
+</configuration>

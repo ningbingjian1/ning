@@ -13,13 +13,19 @@
         <module>ning-hibernate/ning-hibernate-heima-crm</module>
         <module>ning-storm/ning-storm-demo</module>
         <module>ning-hadoop/ning-hadoop-yarn</module>
+        <module>ning-util/ning-util-java</module>
+        <module>ning-util/ning-util-scala</module>
+        <module>ning-util/ning-util-log/ning-util-logback</module>
+        <module>ning-util/ning-util-log/ning-util-logback-demo</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <junit.version>4.11</junit.version>
+        <jedis.version>2.9.0</jedis.version>
+        <commons-lang3.version>3.3</commons-lang3.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -28,6 +34,16 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>${jedis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
