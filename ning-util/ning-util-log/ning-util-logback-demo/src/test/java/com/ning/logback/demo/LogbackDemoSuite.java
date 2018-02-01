@@ -17,6 +17,14 @@ public class LogbackDemoSuite {
         Logger logger = LoggerFactory.getLogger(this.getClass().getName());
         logger.info("this is a test for testConsole ");
     }
+    //userService输出到特定的文件
+    @Test
+    public void testUserServiceSave(){
+        new UserService().save();
+    }
 
-    public void test
+    @Test
+    public void testProvince(){
+        new ProvinceService().save("广东");
+    }
 }

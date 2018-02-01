@@ -17,6 +17,8 @@
         <module>ning-util/ning-util-scala</module>
         <module>ning-util/ning-util-log/ning-util-logback</module>
         <module>ning-util/ning-util-log/ning-util-logback-demo</module>
+        <module>ning-spark/ning-spark-demo</module>
+        <module>ning-spark/ning-spark1.6x-demo</module>
     </modules>
     <packaging>pom</packaging>
 

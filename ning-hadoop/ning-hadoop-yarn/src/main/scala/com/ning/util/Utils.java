@@ -20,7 +20,6 @@ import java.util.concurrent.Callable;
  */
 public class Utils {
     private Utils(){
-
     }
     public static Utils INSTANCE = new Utils();
 
@@ -44,7 +43,6 @@ public class Utils {
             if(attempts > maxAttempts){
                 throw new IOException("Failed to create a temp directory (under " + root + ") after " +
                         maxAttempts + " attempts!");
-
             }
             try{
                 dir = new File(root,namePrefix + "-" + UUID.randomUUID().toString());

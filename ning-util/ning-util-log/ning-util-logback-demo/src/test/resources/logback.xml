@@ -16,37 +16,29 @@
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
-	<appender name="adexpodata" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<!--userService特定输出 -->
+	<appender name="userService" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/hwdata/apache-tomcat-7.0.53/adexpodata_logs/adexpodata-%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+			<fileNamePattern>./user-service-%d{yyyy-MM-dd-HH}.log</fileNamePattern>
 		</rollingPolicy>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<pattern>%msg%n</pattern>
 		</encoder>
 	</appender>
-	<logger name="com.tcl.logoidentify.api.web.app.AppController" level="WARN" additivity="false">
-		<appender-ref ref="adexpodata" />
-	</logger>
-	<appender name="result" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/hwdata/apache-tomcat-7.0.53/result_logs/result-log-%d{yyyy-MM-dd-HH}.log</fileNamePattern>
-		</rollingPolicy>
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<pattern>%msg%n</pattern>
-		</encoder>
-	</appender>
-	<logger name="com.tcl.logoidentify.api.service.ResultLogService" level="WARN" additivity="false">
-		<appender-ref ref="result" />
+	<logger name="com.ning.logback.demo.UserService" level="WARN" additivity="false">
+		<appender-ref ref="userService" />
 	</logger>
 
-	<appender name="report" class="ch.qos.logback.classic.sift.SiftingAppender">
+
+    <!-- 每个省份单独存放日志 -->
+	<appender name="province" class="ch.qos.logback.classic.sift.SiftingAppender">
 		<discriminator>
-			<Key>clientType</Key>
+			<Key>province</Key>
 			<DefaultValue>null</DefaultValue>
 		</discriminator>
 		<sift>
-			<appender name="FILEx" class="ch.qos.logback.core.FileAppender">
-				<File>/hwdata/apache-tomcat-7.0.53/report_logs/report_${clientType}.log</File>
+		    <appender name="FILEx" class="ch.qos.logback.core.FileAppender">
+				<File>./province_${province}.log</File>
 				<Append>true</Append>
 				<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 					<charset>UTF-8</charset>
@@ -59,9 +51,8 @@
 			</appender>
 		</sift>
 	</appender>
-	<logger name="com.tcl.logoidentify.api.service.ReportLogService"
-		level="INFO" additivity="false">
-		<appender-ref ref="report" />
+	<logger name="com.ning.logback.demo.ProvinceService" level="INFO" additivity="false">
+		<appender-ref ref="province" />
 	</logger>
 	
 	
