@@ -20,6 +20,7 @@
         <module>ning-spark/ning-spark-demo</module>
         <module>ning-spark/ning-spark1.6x-demo</module>
         <module>nint-netty/ning-netty-demo</module>
+        <module>ning-elasticsearch/ning-elasticsearch-demo</module>
     </modules>
     <packaging>pom</packaging>
 
