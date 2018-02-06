@@ -61,7 +61,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.ning.kafka.util.ConsumerTest</mainClass>
+                            <mainClass>com.ning.ConsumerTest</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

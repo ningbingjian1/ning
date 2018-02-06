@@ -1,5 +1,6 @@
-package com.ning.kafka.util;
+package com.ning;
 
+import com.ning.kafka.util.KafkaTemplate;
 import org.jboss.netty.util.CharsetUtil;
 
 import java.util.concurrent.ExecutorService;
