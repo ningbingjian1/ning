@@ -20,7 +20,8 @@ public class NingEchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf content = (ByteBuf)msg;
-        System.out.println("server receive:" + content.toString(CharsetUtil.UTF_8));
+        String addr = ctx.channel().remoteAddress().toString();
+        System.out.println("from client " + addr + ":" + content.toString(CharsetUtil.UTF_8));
         //回写给客户端
         ctx.write(content);
     }

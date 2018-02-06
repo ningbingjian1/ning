@@ -24,3 +24,13 @@ D:\tools\protobuf>protoc-3.5.1-windows-x86_64.exe -I=D:\tools\protobuf\person\ -
 # httpServer实例
 # echo 实例
 
+# example1
+这是一个启动好一直相互发送消息的例子，服务端和客户端会不停的发送消息，除非手动停止
+
+主要是客户端在channelActive事件中触发消息发送，之后服务端和客户端不停止的通信
+
+使用长度编码器
+# chat聊天实例
+使用分隔符解码器  行分隔符 一行表示一个消息 
+客户端之间相互通信
+

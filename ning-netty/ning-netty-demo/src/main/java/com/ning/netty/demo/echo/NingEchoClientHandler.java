@@ -18,6 +18,7 @@ public class NingEchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.channel().writeAndFlush(Unpooled.copiedBuffer("netty ,i come ",CharsetUtil.UTF_8));
+
     }
 
     @Override

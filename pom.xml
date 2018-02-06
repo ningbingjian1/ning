@@ -19,7 +19,7 @@
         <module>ning-util/ning-util-log/ning-util-logback-demo</module>
         <module>ning-spark/ning-spark-demo</module>
         <module>ning-spark/ning-spark1.6x-demo</module>
-        <module>nint-netty/ning-netty-demo</module>
+        <module>ning-netty/ning-netty-demo</module>
     </modules>
     <packaging>pom</packaging>
 
