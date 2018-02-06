@@ -22,6 +22,7 @@
         <module>ning-netty/ning-netty-demo</module>
         <module>ning-elasticsearch/ning-elasticsearch-demo</module>
         <module>ning-redis/ning-redis3-util</module>
+        <module>ning-kafka/ning-kafka0.8-util</module>
     </modules>
     <packaging>pom</packaging>
 
