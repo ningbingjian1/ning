@@ -21,6 +21,7 @@
         <module>ning-spark/ning-spark1.6x-demo</module>
         <module>ning-netty/ning-netty-demo</module>
         <module>ning-elasticsearch/ning-elasticsearch-demo</module>
+        <module>ning-redis/ning-redis3-util</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -28,7 +29,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <junit.version>4.11</junit.version>
-        <jedis.version>2.9.0</jedis.version>
         <commons-lang3.version>3.3</commons-lang3.version>
     </properties>
     <dependencyManagement>

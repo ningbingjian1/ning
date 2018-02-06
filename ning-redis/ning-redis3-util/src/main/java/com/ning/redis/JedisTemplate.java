@@ -3,13 +3,12 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.ning.util.redis;
+package com.ning.redis;
 
-import com.ning.util.redis.ShardedJedisPoolFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import redis.clients.jedis.ShardedJedis;
-import redis.clients.jedis.ShardedJedisPool;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.HashMap;
@@ -17,26 +16,24 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 在redis-sharded.properties中可以配置多个redis服务器，通过一致性hash来get set。
- *
- * 从tcl接手的ShardedJedisTemplate代码的备份  因为升级了redis为集群模式，而又不了解
- * 原先的代码，只能在ShardedJedisTemplate中将代码都修改为JedisCluster进行操作
- *
+ * JedisTemplate 提供了一个template方法，负责对Jedis连接的获取与归还。
+ * JedisAction<T> 和 JedisActionNoResult两种回调接口，适用于有无返回值两种情况。
+ * 同时提供一些最常用函数的封装, 如get/set/zadd等。
  */
-public class ShardedJedisTemplate {
-    private static final String                            DEFAULT_CONFIG_FILE = "/redis/redis-sharded.properties";
-    private static Map<String, ShardedJedisTemplate> jedisTemplates      = new HashMap<String, ShardedJedisTemplate>();
+public class JedisTemplate {
+    private static final String DEFAULT_CONFIG_FILE = "/redis/redis.properties";
+    private static Map<String, JedisTemplate> jedisTemplates = new HashMap<String, JedisTemplate>();
 
-    public static ShardedJedisTemplate getInstance() {
+    public static JedisTemplate getInstance() {
         return getInstance(DEFAULT_CONFIG_FILE);
     }
 
-    public static ShardedJedisTemplate getInstance(String configFilePath) {
+    public static JedisTemplate getInstance(String configFilePath) {
         if (jedisTemplates.get(configFilePath) == null) {
-            synchronized (ShardedJedisTemplate.class) {
+            synchronized (JedisTemplate.class) {
                 if (jedisTemplates.get(configFilePath) == null) {
-                    ShardedJedisPool           pool          = ShardedJedisPoolFactory.createJedisPool(configFilePath);
-                    ShardedJedisTemplate jedisTemplate = new ShardedJedisTemplate(pool);
+                    JedisPool pool = JedisPoolFactory.createJedisPool(configFilePath);
+                    JedisTemplate jedisTemplate = new JedisTemplate(pool);
                     jedisTemplates.put(configFilePath, jedisTemplate);
                 }
             }
@@ -44,19 +41,19 @@ public class ShardedJedisTemplate {
         return jedisTemplates.get(configFilePath);
     }
 
-    private static Logger logger = LoggerFactory.getLogger(ShardedJedisTemplate.class);
+    private static Logger logger = LoggerFactory.getLogger(JedisTemplate.class);
 
-    private ShardedJedisPool jedisPool;
+    private JedisPool jedisPool;
 
-    protected ShardedJedisTemplate(ShardedJedisPool pool) {
-        this.jedisPool = pool;
+    private JedisTemplate(JedisPool jedisPool) {
+        this.jedisPool = jedisPool;
     }
 
     /**
      * 执行有返回结果的action。
      */
     public <T> T execute(JedisAction<T> jedisAction) {
-        ShardedJedis jedis = null;
+        Jedis jedis = null;
         boolean broken = false;
         try {
             jedis = jedisPool.getResource();
@@ -74,7 +71,7 @@ public class ShardedJedisTemplate {
      * 执行无返回结果的action。
      */
     public void execute(JedisActionNoResult jedisAction) {
-        ShardedJedis jedis = null;
+        Jedis jedis = null;
         boolean broken = false;
         try {
             jedis = jedisPool.getResource();
@@ -91,7 +88,7 @@ public class ShardedJedisTemplate {
     /**
      * 根据连接是否已中断的标志，分别调用returnBrokenResource或returnResource。
      */
-    protected void closeResource(ShardedJedis jedis, boolean connectionBroken) {
+    protected void closeResource(Jedis jedis, boolean connectionBroken) {
         if (jedis != null) {
             try {
                 if (connectionBroken) {
@@ -101,6 +98,22 @@ public class ShardedJedisTemplate {
                 }
             } catch (Exception e) {
                 logger.error("Error happen when return jedis to pool, try to close it directly.", e);
+                closeJedis(jedis);
+            }
+        }
+    }
+
+    private void closeJedis(Jedis jedis) {
+        if (jedis.isConnected()) {
+            try {
+                try {
+                    jedis.quit();
+                } catch (Exception e) {
+                    //
+                }
+                jedis.disconnect();
+            } catch (Exception e) {
+                //
             }
         }
     }
@@ -108,7 +121,7 @@ public class ShardedJedisTemplate {
     /**
      * 获取内部的pool做进一步的动作。
      */
-    public ShardedJedisPool getJedisPool() {
+    public JedisPool getJedisPool() {
         return jedisPool;
     }
 
@@ -116,14 +129,14 @@ public class ShardedJedisTemplate {
      * 有返回结果的回调接口定义。
      */
     public interface JedisAction<T> {
-        T action(ShardedJedis jedis);
+        T action(Jedis jedis);
     }
 
     /**
      * 无返回结果的回调接口定义。
      */
     public interface JedisActionNoResult {
-        void action(ShardedJedis jedis);
+        void action(Jedis jedis);
     }
 
     // ////////////// 常用方法的封装 ///////////////////////// //
@@ -132,16 +145,26 @@ public class ShardedJedisTemplate {
     /**
      * 删除key, 如果key存在返回true, 否则返回false。
      */
-    public Boolean del(final String key) {
+    public Boolean del(final String... keys) {
         return execute(new JedisAction<Boolean>() {
 
             @Override
-            public Boolean action(ShardedJedis jedis) {
-                return jedis.del(key) == 1 ? true : false;
+            public Boolean action(Jedis jedis) {
+                return jedis.del(keys) == 1 ? true : false;
             }
         });
     }
 
+    public void flushDB() {
+        execute(new JedisActionNoResult() {
+
+            @Override
+            public void action(Jedis jedis) {
+                jedis.flushDB();
+            }
+        });
+    }
+    
     // ////////////// 关于String ///////////////////////////
     /**
      * 如果key不存在, 返回null.
@@ -150,7 +173,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<String>() {
 
             @Override
-            public String action(ShardedJedis jedis) {
+            public String action(Jedis jedis) {
                 return jedis.get(key);
             }
         });
@@ -164,7 +187,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<byte[]>() {
 
             @Override
-            public byte[] action(ShardedJedis jedis) {
+            public byte[] action(Jedis jedis) {
                 return jedis.get(key);
             }
         });
@@ -190,28 +213,8 @@ public class ShardedJedisTemplate {
         execute(new JedisActionNoResult() {
 
             @Override
-            public void action(ShardedJedis jedis) {
+            public void action(Jedis jedis) {
                 jedis.set(key, value);
-            }
-        });
-    }
-
-    public void expire(final String key, final int seconds) {
-        execute(new JedisActionNoResult() {
-
-            @Override
-            public void action(ShardedJedis jedis) {
-                jedis.expire(key, seconds);
-            }
-        });
-    }
-
-    public void expire(final byte[] key, final int seconds) {
-        execute(new JedisActionNoResult() {
-
-            @Override
-            public void action(ShardedJedis jedis) {
-                jedis.expire(key, seconds);
             }
         });
     }
@@ -220,7 +223,7 @@ public class ShardedJedisTemplate {
         execute(new JedisActionNoResult() {
 
             @Override
-            public void action(ShardedJedis jedis) {
+            public void action(Jedis jedis) {
                 jedis.set(key, value);
             }
         });
@@ -230,7 +233,7 @@ public class ShardedJedisTemplate {
         execute(new JedisActionNoResult() {
 
             @Override
-            public void action(ShardedJedis jedis) {
+            public void action(Jedis jedis) {
                 jedis.setex(key, seconds, value);
             }
         });
@@ -243,7 +246,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<Boolean>() {
 
             @Override
-            public Boolean action(ShardedJedis jedis) {
+            public Boolean action(Jedis jedis) {
                 return jedis.setnx(key, value) == 1 ? true : false;
             }
         });
@@ -252,7 +255,7 @@ public class ShardedJedisTemplate {
     public Long incr(final String key) {
         return execute(new JedisAction<Long>() {
             @Override
-            public Long action(ShardedJedis jedis) {
+            public Long action(Jedis jedis) {
                 return jedis.incr(key);
             }
         });
@@ -261,18 +264,18 @@ public class ShardedJedisTemplate {
     public Long decr(final String key) {
         return execute(new JedisAction<Long>() {
             @Override
-            public Long action(ShardedJedis jedis) {
+            public Long action(Jedis jedis) {
                 return jedis.decr(key);
             }
         });
     }
 
     // ////////////// 关于List ///////////////////////////
-    public Long lpush(final String key, final String... values) {
-        return execute(new JedisAction<Long>() {
+    public void lpush(final String key, final String... values) {
+        execute(new JedisActionNoResult() {
             @Override
-            public Long action(ShardedJedis jedis) {
-                return jedis.lpush(key, values);
+            public void action(Jedis jedis) {
+                jedis.lpush(key, values);
             }
         });
     }
@@ -281,7 +284,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<String>() {
 
             @Override
-            public String action(ShardedJedis jedis) {
+            public String action(Jedis jedis) {
                 return jedis.rpop(key);
             }
         });
@@ -294,7 +297,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<Long>() {
 
             @Override
-            public Long action(ShardedJedis jedis) {
+            public Long action(Jedis jedis) {
                 return jedis.llen(key);
             }
         });
@@ -306,7 +309,7 @@ public class ShardedJedisTemplate {
     public Boolean lremOne(final String key, final String value) {
         return execute(new JedisAction<Boolean>() {
             @Override
-            public Boolean action(ShardedJedis jedis) {
+            public Boolean action(Jedis jedis) {
                 Long count = jedis.lrem(key, 1, value);
                 return (count == 1);
             }
@@ -319,7 +322,7 @@ public class ShardedJedisTemplate {
     public Boolean lremAll(final String key, final String value) {
         return execute(new JedisAction<Boolean>() {
             @Override
-            public Boolean action(ShardedJedis jedis) {
+            public Boolean action(Jedis jedis) {
                 Long count = jedis.lrem(key, 0, value);
                 return (count > 0);
             }
@@ -334,7 +337,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<Boolean>() {
 
             @Override
-            public Boolean action(ShardedJedis jedis) {
+            public Boolean action(Jedis jedis) {
                 return jedis.zadd(key, score, member) == 1 ? true : false;
             }
         });
@@ -347,7 +350,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<Boolean>() {
 
             @Override
-            public Boolean action(ShardedJedis jedis) {
+            public Boolean action(Jedis jedis) {
                 return jedis.zrem(key, member) == 1 ? true : false;
             }
         });
@@ -360,7 +363,7 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<Double>() {
 
             @Override
-            public Double action(ShardedJedis jedis) {
+            public Double action(Jedis jedis) {
                 return jedis.zscore(key, member);
             }
         });
@@ -373,17 +376,34 @@ public class ShardedJedisTemplate {
         return execute(new JedisAction<Long>() {
 
             @Override
-            public Long action(ShardedJedis jedis) {
+            public Long action(Jedis jedis) {
                 return jedis.zcard(key);
             }
         });
     }
 
+    public Map<byte[], byte[]> hgetall(final byte[] key) {
+        return execute(new JedisAction<Map<byte[], byte[]>>() {
+            @Override
+            public Map<byte[], byte[]> action(Jedis jedis) {
+                return jedis.hgetAll(key);
+            }
+        });
+    }
+
+    public List<String> lrange(final String key, final int i, final int j) {
+        return execute(new JedisAction<List<String>>() {
+            @Override
+            public List<String> action(Jedis jedis) {
+                return jedis.lrange(key, i, j);
+            }
+        });
+    }
 
     public Map<String, String> hgetall(final String key) {
         return execute(new JedisAction<Map<String, String>>() {
             @Override
-            public Map<String, String> action(ShardedJedis jedis) {
+            public Map<String, String> action(Jedis jedis) {
                 return jedis.hgetAll(key);
             }
         });
@@ -392,29 +412,133 @@ public class ShardedJedisTemplate {
     public List<byte[]> lrange(final byte[] key, final int i, final int j) {
         return execute(new JedisAction<List<byte[]>>() {
             @Override
-            public List<byte[]> action(ShardedJedis jedis) {
+            public List<byte[]> action(Jedis jedis) {
                 return jedis.lrange(key, i, j);
             }
         });
     }
 
+    public void lpush(final byte[] key, final byte[][] values) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+                jedis.lpush(key, values);
+            }
+        });
+        
+    }
+    
+    public void hset(final String key, final String field, final String value) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+                jedis.hset(key, field, value);
+            }
+        });
+        
+    }
+    
+    public void hset(final byte[] key, final byte[] field, final byte[] value) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+                jedis.hset(key, field, value);
+            }
+        });
+        
+    }
+    
+    public void hset(final String key, final String field, final String value, final int dbindex) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+            	jedis.select(dbindex);
+                jedis.hset(key, field, value);
+            }
+        });
+        
+    }
+    
+    public void hset(final byte[] key, final byte[] field, final byte[] value, final int dbindex) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+            	jedis.select(dbindex);
+                jedis.hset(key, field, value);
+            }
+        });
+        
+    }
+    
     public String hget(final String key, final String field) {
         return execute(new JedisAction<String>() {
             @Override
-            public String action(ShardedJedis jedis) {
+            public String action(Jedis jedis) {
                 return jedis.hget(key, field);
             }
         });
-
+        
     }
-
+    
     public byte[] hget(final byte[] key, final byte[] field) {
         return execute(new JedisAction<byte[]>() {
             @Override
-            public byte[] action(ShardedJedis jedis) {
+            public byte[] action(Jedis jedis) {
                 return jedis.hget(key, field);
             }
         });
+        
+    }
+    
+    public String hget(final String key, final String field, final int dbindex) {
+       return  execute(new JedisAction<String>() {
+            @Override
+            public String action(Jedis jedis) {
+            	jedis.select(dbindex);
+                return jedis.hget(key, field);
+            }
+        });
+        
+    }
+    
+    public byte[] hget(final byte[] key, final byte[] field, final int dbindex) {
+        return execute(new JedisAction<byte[]>() {
+            @Override
+            public byte[] action(Jedis jedis) {
+            	jedis.select(dbindex);
+                return jedis.hget(key, field);
+            }
+        });
+        
+    }
+    
+    public void publish(final byte[] channel, final byte[] message) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+                jedis.publish(channel, message);
+            }
+        });
+        
+    }
+    
+    public void publish(final String channel, final String message) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+                jedis.publish(channel, message);
+            }
+        });
+        
+    }
 
+    public void expire(final byte[] key, final int expireTime) {
+        execute(new JedisActionNoResult() {
+            @Override
+            public void action(Jedis jedis) {
+                jedis.expire(key, expireTime);
+            }
+        });
+        
     }
 }

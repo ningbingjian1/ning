@@ -3,19 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.ning.util.redis;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.exceptions.JedisDataException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
+package com.ning.redis;
 
 /**
  * 装载并执行Lua Script，
@@ -24,7 +12,7 @@ import java.util.List;
  * 
  * 因为涉及到的key未知，暂时不支持Sharding。
  */
-public class JedisScriptExecutor {
+public class JedisScriptExecutor {/*
     private static Logger logger = LoggerFactory.getLogger(JedisScriptExecutor.class);
 
     private JedisTemplate jedisTemplate;
@@ -36,10 +24,10 @@ public class JedisScriptExecutor {
         this.jedisTemplate = jedisTemplate;
     }
 
-    /**
+    *//**
      * 装载Lua Script。
      * 如果Script出错，抛出JedisDataException。
-     */
+     *//*
     public void load(final String scriptContent) throws JedisDataException {
         sha1 = jedisTemplate.execute(new JedisTemplate.JedisAction<String>() {
             @Override
@@ -52,9 +40,9 @@ public class JedisScriptExecutor {
         logger.debug("Script \"{}\" had been loaded as {}", scriptContent, sha1);
     }
 
-    /**
+    *//**
      * 从文件加载Lua Script, 文件路径格式为Spring Resource的格式.
-     */
+     *//*
     public void loadFromFile(final String scriptPath) throws JedisDataException {
         String scriptContent;
         try {
@@ -74,20 +62,20 @@ public class JedisScriptExecutor {
         load(scriptContent);
     }
 
-    /**
+    *//**
      * 执行Lua Script, 如果Redis服务器上还没装载Script则自动装载并重试。
      * keys与args不允许为null.
-     */
+     *//*
     public Object execute(final String[] keys, final String[] args) throws IllegalArgumentException {
         Validate.notNull(keys, "keys can't be null.");
         Validate.notNull(args, "args can't be null.");
         return execute(Arrays.asList(keys), Arrays.asList(args));
     }
 
-    /**
+    *//**
      * 执行Lua Script, 如果Redis服务器上还没装载Script则自动装载并重试。
      * keys与args不允许为null.
-     */
+     *//*
     public Object execute(final List<String> keys, final List<String> args) throws IllegalArgumentException {
         Validate.notNull(keys, "keys can't be null.");
         Validate.notNull(args, "args can't be null.");
@@ -105,5 +93,5 @@ public class JedisScriptExecutor {
                 }
             }
         });
-    }
+    }*/
 }
