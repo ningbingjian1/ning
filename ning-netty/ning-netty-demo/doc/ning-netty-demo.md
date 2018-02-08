@@ -33,4 +33,25 @@ D:\tools\protobuf>protoc-3.5.1-windows-x86_64.exe -I=D:\tools\protobuf\person\ -
 # chat聊天实例
 使用分隔符解码器  行分隔符 一行表示一个消息 
 客户端之间相互通信
+## 重点知识点
+DelimiterBasedFrameDecoder 分隔符解码器
+DefaultChannelGroup :可以把多个channel组成一组，然后可以对这组channel进行消息发送
+handlerAdded:group加入channel的时机点，表示在channel处理已经添加后加入group
+NingChatClient:连接服务端后从控制台读取消息发送给服务端，服务端再转发
+给其他客户端.
+
+# readwrite.check
+
+读写空闲检测
+
+## 知识点
+IdleStateHandler ：负责检测服务端和客户端的空闲策略 空闲包含读空闲 写空闲  读写空闲 
+
+    
+
+
+
+
+
+
 
