@@ -6,13 +6,14 @@ D:\tools\protobuf>protoc-3.5.1-windows-x86_64.exe -I=D:\tools\protobuf\person\ -
 ```
 ## ProtoBufServe
     - 负责服务端创建，接收客户端请求
+    
     创建服务端通过模板代码创建即可，主要变化在ChannelInitializer添加的编码器和解码器
 ### 编码器
     ProtobufVarint32LengthFieldPrepender  添加头部编码处理
     ProtobufEncoder   内容编码处理
 ### 解码器
     ProtobufVarint32FrameDecoder  头部解码
-    ProtobufDecoder  内容解码
+    ProtobufDecoder  内容解码  传入我们的protoBuf解码实例
 ### inBound消息处理
     ProtoBufServerHandler  处理经过解码后的对象 此时已经是我们需要的真正对象了
 ## ProtoBufClient
@@ -20,7 +21,34 @@ D:\tools\protobuf>protoc-3.5.1-windows-x86_64.exe -I=D:\tools\protobuf\person\ -
     创建方式和服务端一样
 ### inBound消息处理
     ProtoBufClientHandler     处理经过解码后的对象 此时已经是我们需要的真正对象了
-    
+ 
+ 
+# protobuf2
+这个实例主要实现了在netty通讯的时候，解决多个不同类型的消息传送问题。比如需要同时传送Person ,Point ,Car等不同的消息
+通过protobuf这个实例时无法实现的。
+只有通过定义msgType来区分传送的是哪种类型，然后进行对应的提取，而在proto文件中用oneof来封装多个消息，
+每次只设置一个具体的消息实例即可
+如下：定义消息为RpcMsg,内部包含type 和 oneof msg两个实体 
+msgType表示当前传送的是哪个消息
+oneof包裹了后边定义的多个消息
+```
+message RpcMsg{
+    enum MsgType{
+        PersonType = 1;
+        CarType = 2;
+        PointType = 3 ;
+    }
+    required MsgType msg_type = 1;
+    oneof msg {
+        Person person = 2;
+        Car car = 3;
+        Point point = 4;
+    }
+
+}
+```
+
+
 # httpServer实例
 # echo 实例
 

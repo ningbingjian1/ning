@@ -36,15 +36,5 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.5.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>1.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-streaming_2.11</artifactId>
-            <version>1.6.3</version>
-        </dependency>
     </dependencies>
 </project>
