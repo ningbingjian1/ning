@@ -20,6 +20,7 @@ object WordCount {
     val words = for( i  <- 0 to 1000) yield "word" + rnd.nextInt(100)
     sc.parallelize(words).map((_,1)).reduceByKey(_ + _)
       .collect().foreach(item =>{
+      println("在这里睡眠")
       Thread.sleep(Integer.MAX_VALUE)
     })
   }
