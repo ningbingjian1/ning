@@ -5,7 +5,17 @@ import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.aggregations.AggregationBuilder;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.filter.Filter;
+import org.elasticsearch.search.aggregations.bucket.filter.FilterAggregationBuilder;
+import org.elasticsearch.search.aggregations.bucket.filters.Filters;
+import org.elasticsearch.search.aggregations.bucket.filters.FiltersAggregationBuilder;
+import org.elasticsearch.search.aggregations.bucket.histogram.DateHistogramInterval;
+import org.elasticsearch.search.aggregations.bucket.histogram.Histogram;
+import org.elasticsearch.search.aggregations.bucket.range.Range;
+import org.elasticsearch.search.aggregations.bucket.range.RangeAggregationBuilder;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.avg.Avg;
@@ -149,8 +159,84 @@ public class AggApiTest {
     }
     @Test
     public void testFilterAgg(){
+        FilterAggregationBuilder filterAgg = AggregationBuilders.filter("agg",
+                QueryBuilders.termQuery("title","javascript"));
+        SearchResponse res = client.prepareSearch("books").addAggregation(filterAgg).execute().actionGet();
+        System.out.println(res.toString());
+        Filter filter = res.getAggregations().get("agg");
+        System.out.println(filter.getName() + ":" + filter.getDocCount());
+    }
+    @Test
+    public void testFiltersAgg(){
+        FiltersAggregationBuilder filterAgg = AggregationBuilders.filters("agg",
+                QueryBuilders.termQuery("title","java"),
+                QueryBuilders.termQuery("title","python"));
+        SearchResponse res = client.prepareSearch("books").addAggregation(filterAgg).execute().actionGet();
+        Filters filterAggResult = res.getAggregations().get("agg");
+        System.out.println(res);
+        for(Filters.Bucket bucket : filterAggResult.getBuckets()){
+            String key = bucket.getKeyAsString();
+            long count = bucket.getDocCount();
+            System.out.println(key + ":" + count);
+        }
+    }
+
+    @Test
+    public void testRangeAgg(){
+        RangeAggregationBuilder rangeAgg = AggregationBuilders.range("agg")
+                .field("price")
+                .addRange(50,80)
+                .addUnboundedTo(80)
+                .addUnboundedFrom(50);
+        SearchResponse res = client.prepareSearch("books")
+                .addAggregation(rangeAgg)
+                .execute()
+                .actionGet();
+        System.out.println(res);
+        Range range = res.getAggregations().get("agg");
+        for(Range.Bucket bucket : range.getBuckets()){
+            System.out.println(bucket.getKeyAsString() + ":" + bucket.getDocCount() +
+                    ":from is " + bucket.getFrom() +
+                    ":to is " + bucket.getTo()
+            );
+        }
 
     }
+
+    @Test
+    public void testDateRangeAgg(){
+        AggregationBuilder dateAgg = AggregationBuilders.dateRange("agg")
+                .field("publish_time")
+                .format("yyyy-MM-dd")
+                .addUnboundedTo("now-50M/M")
+                .addUnboundedFrom("now-45M/M");
+        SearchResponse res = client.prepareSearch("books").addAggregation(dateAgg).execute().actionGet();
+        Range range = res.getAggregations().get("agg");
+        for(Range.Bucket bucket : range.getBuckets()){
+            System.out.println(bucket.getKeyAsString() + ":" + bucket.getDocCount() +
+                    ":from is " + bucket.getFrom() +
+                    ":to is " + bucket.getTo()
+            );
+        }
+
+    }
+
+    @Test
+    public void testDateHistogramAgg(){
+        AggregationBuilder dateAgg = AggregationBuilders.dateHistogram("agg")
+                .field("publish_time")
+                .format("yyyy-MM-dd")
+                .dateHistogramInterval(DateHistogramInterval.YEAR);
+
+        SearchResponse res = client.prepareSearch("books").addAggregation(dateAgg).execute().actionGet();
+        Histogram histogram = res.getAggregations().get("agg");
+        for(Histogram.Bucket bucket : histogram.getBuckets()){
+            System.out.println(bucket.getKeyAsString() + ":" + bucket.getDocCount()
+            );
+        }
+    }
+
+
     @Test
     public void tearDown(){
         client.close();

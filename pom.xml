@@ -14,7 +14,6 @@
         <module>ning-storm/ning-storm-demo</module>
         <module>ning-hadoop/ning-hadoop-yarn</module>
         <module>ning-util/ning-util-java</module>
-        <module>ning-util/ning-util-scala</module>
         <module>ning-util/ning-util-log/ning-util-logback</module>
         <module>ning-util/ning-util-log/ning-util-logback-demo</module>
         <module>ning-spark/ning-spark-demo</module>
@@ -39,16 +38,6 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>${jedis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
