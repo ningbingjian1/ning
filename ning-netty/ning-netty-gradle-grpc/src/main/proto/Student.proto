@@ -1,0 +1,35 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.student";
+option java_outer_classname = "StudentProto";
+
+package helloworld;
+
+// 服务
+service StudentService {
+    // 一次请求  一次响应
+    rpc getByName(StudentRequest) returns (StudentResponse){}
+    // 一次请求 流式响应
+    rpc getByAge(StudentRequest) returns (stream StudentResponse){}
+    // 流式请求 一次响应
+    rpc getByCity(stream StudentRequest) returns( StudentResponseList){}
+    //流式请求 流式响应
+    rpc getByProvince(stream StudentRequest) returns (stream StudentResponse){}
+}
+
+message StudentRequest{
+    string name = 1;
+    int32 age = 2 ;
+    string city = 3;
+    string province = 4;
+}
+message StudentResponse{
+    string name = 1 ;
+    int32 age = 2;
+    string city = 3 ;
+    string province = 4 ;
+
+}
+message StudentResponseList{
+    repeated StudentResponse studentResponse = 1;
+}
