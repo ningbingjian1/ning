@@ -14,7 +14,7 @@ import scala.util.Random
   */
 object WordCount {
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName(this.getClass.getName)
+    val conf = new SparkConf().setMaster("local[1]").setAppName(this.getClass.getName)
     val sc = new SparkContext(conf)
     val rnd = new Random()
     val words = for( i  <- 0 to 1000) yield "word" + rnd.nextInt(100)
