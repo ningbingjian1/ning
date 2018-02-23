@@ -4,11 +4,11 @@
 package io.grpc.examples.student;
 
 /**
- * Protobuf type {@code helloworld.StudentResponseList}
+ * Protobuf type {@code io.grpc.examples.student.StudentResponseList}
  */
 public  final class StudentResponseList extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:helloworld.StudentResponseList)
+    // @@protoc_insertion_point(message_implements:io.grpc.examples.student.StudentResponseList)
     StudentResponseListOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use StudentResponseList.newBuilder() to construct.
@@ -76,12 +76,12 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentResponseList_descriptor;
+    return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentResponseList_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentResponseList_fieldAccessorTable
+    return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentResponseList_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             io.grpc.examples.student.StudentResponseList.class, io.grpc.examples.student.StudentResponseList.Builder.class);
   }
@@ -89,32 +89,32 @@ private static final long serialVersionUID = 0L;
   public static final int STUDENTRESPONSE_FIELD_NUMBER = 1;
   private java.util.List<io.grpc.examples.student.StudentResponse> studentResponse_;
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   public java.util.List<io.grpc.examples.student.StudentResponse> getStudentResponseList() {
     return studentResponse_;
   }
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   public java.util.List<? extends io.grpc.examples.student.StudentResponseOrBuilder> 
       getStudentResponseOrBuilderList() {
     return studentResponse_;
   }
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   public int getStudentResponseCount() {
     return studentResponse_.size();
   }
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   public io.grpc.examples.student.StudentResponse getStudentResponse(int index) {
     return studentResponse_.get(index);
   }
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   public io.grpc.examples.student.StudentResponseOrBuilder getStudentResponseOrBuilder(
       int index) {
@@ -275,20 +275,20 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code helloworld.StudentResponseList}
+   * Protobuf type {@code io.grpc.examples.student.StudentResponseList}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:helloworld.StudentResponseList)
+      // @@protoc_insertion_point(builder_implements:io.grpc.examples.student.StudentResponseList)
       io.grpc.examples.student.StudentResponseListOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentResponseList_descriptor;
+      return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentResponseList_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentResponseList_fieldAccessorTable
+      return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentResponseList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.grpc.examples.student.StudentResponseList.class, io.grpc.examples.student.StudentResponseList.Builder.class);
     }
@@ -322,7 +322,7 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentResponseList_descriptor;
+      return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentResponseList_descriptor;
     }
 
     public io.grpc.examples.student.StudentResponseList getDefaultInstanceForType() {
@@ -457,7 +457,7 @@ private static final long serialVersionUID = 0L;
         io.grpc.examples.student.StudentResponse, io.grpc.examples.student.StudentResponse.Builder, io.grpc.examples.student.StudentResponseOrBuilder> studentResponseBuilder_;
 
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public java.util.List<io.grpc.examples.student.StudentResponse> getStudentResponseList() {
       if (studentResponseBuilder_ == null) {
@@ -467,7 +467,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public int getStudentResponseCount() {
       if (studentResponseBuilder_ == null) {
@@ -477,7 +477,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public io.grpc.examples.student.StudentResponse getStudentResponse(int index) {
       if (studentResponseBuilder_ == null) {
@@ -487,7 +487,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder setStudentResponse(
         int index, io.grpc.examples.student.StudentResponse value) {
@@ -504,7 +504,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder setStudentResponse(
         int index, io.grpc.examples.student.StudentResponse.Builder builderForValue) {
@@ -518,7 +518,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder addStudentResponse(io.grpc.examples.student.StudentResponse value) {
       if (studentResponseBuilder_ == null) {
@@ -534,7 +534,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder addStudentResponse(
         int index, io.grpc.examples.student.StudentResponse value) {
@@ -551,7 +551,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder addStudentResponse(
         io.grpc.examples.student.StudentResponse.Builder builderForValue) {
@@ -565,7 +565,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder addStudentResponse(
         int index, io.grpc.examples.student.StudentResponse.Builder builderForValue) {
@@ -579,7 +579,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder addAllStudentResponse(
         java.lang.Iterable<? extends io.grpc.examples.student.StudentResponse> values) {
@@ -594,7 +594,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder clearStudentResponse() {
       if (studentResponseBuilder_ == null) {
@@ -607,7 +607,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public Builder removeStudentResponse(int index) {
       if (studentResponseBuilder_ == null) {
@@ -620,14 +620,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public io.grpc.examples.student.StudentResponse.Builder getStudentResponseBuilder(
         int index) {
       return getStudentResponseFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public io.grpc.examples.student.StudentResponseOrBuilder getStudentResponseOrBuilder(
         int index) {
@@ -637,7 +637,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public java.util.List<? extends io.grpc.examples.student.StudentResponseOrBuilder> 
          getStudentResponseOrBuilderList() {
@@ -648,14 +648,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public io.grpc.examples.student.StudentResponse.Builder addStudentResponseBuilder() {
       return getStudentResponseFieldBuilder().addBuilder(
           io.grpc.examples.student.StudentResponse.getDefaultInstance());
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public io.grpc.examples.student.StudentResponse.Builder addStudentResponseBuilder(
         int index) {
@@ -663,7 +663,7 @@ private static final long serialVersionUID = 0L;
           index, io.grpc.examples.student.StudentResponse.getDefaultInstance());
     }
     /**
-     * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+     * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
      */
     public java.util.List<io.grpc.examples.student.StudentResponse.Builder> 
          getStudentResponseBuilderList() {
@@ -694,10 +694,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:helloworld.StudentResponseList)
+    // @@protoc_insertion_point(builder_scope:io.grpc.examples.student.StudentResponseList)
   }
 
-  // @@protoc_insertion_point(class_scope:helloworld.StudentResponseList)
+  // @@protoc_insertion_point(class_scope:io.grpc.examples.student.StudentResponseList)
   private static final io.grpc.examples.student.StudentResponseList DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new io.grpc.examples.student.StudentResponseList();

@@ -4,29 +4,29 @@
 package io.grpc.examples.student;
 
 public interface StudentResponseListOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:helloworld.StudentResponseList)
+    // @@protoc_insertion_point(interface_extends:io.grpc.examples.student.StudentResponseList)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   java.util.List<io.grpc.examples.student.StudentResponse> 
       getStudentResponseList();
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   io.grpc.examples.student.StudentResponse getStudentResponse(int index);
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   int getStudentResponseCount();
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   java.util.List<? extends io.grpc.examples.student.StudentResponseOrBuilder> 
       getStudentResponseOrBuilderList();
   /**
-   * <code>repeated .helloworld.StudentResponse studentResponse = 1;</code>
+   * <code>repeated .io.grpc.examples.student.StudentResponse studentResponse = 1;</code>
    */
   io.grpc.examples.student.StudentResponseOrBuilder getStudentResponseOrBuilder(
       int index);

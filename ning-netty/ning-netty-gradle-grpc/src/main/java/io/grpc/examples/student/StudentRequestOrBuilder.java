@@ -4,7 +4,7 @@
 package io.grpc.examples.student;
 
 public interface StudentRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:helloworld.StudentRequest)
+    // @@protoc_insertion_point(interface_extends:io.grpc.examples.student.StudentRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

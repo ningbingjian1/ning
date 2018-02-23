@@ -5,7 +5,6 @@ option java_package = "io.grpc.examples.student";
 option java_outer_classname = "StudentProto";
 
 
-
 // 服务
 service StudentService {
     // 一次请求  一次响应

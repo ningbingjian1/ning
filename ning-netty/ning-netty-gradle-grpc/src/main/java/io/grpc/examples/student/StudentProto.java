@@ -15,20 +15,20 @@ public final class StudentProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_helloworld_StudentRequest_descriptor;
+    internal_static_io_grpc_examples_student_StudentRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_helloworld_StudentRequest_fieldAccessorTable;
+      internal_static_io_grpc_examples_student_StudentRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_helloworld_StudentResponse_descriptor;
+    internal_static_io_grpc_examples_student_StudentResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_helloworld_StudentResponse_fieldAccessorTable;
+      internal_static_io_grpc_examples_student_StudentResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_helloworld_StudentResponseList_descriptor;
+    internal_static_io_grpc_examples_student_StudentResponseList_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_helloworld_StudentResponseList_fieldAccessorTable;
+      internal_static_io_grpc_examples_student_StudentResponseList_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -38,22 +38,26 @@ public final class StudentProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rStudent.proto\022\nhelloworld\"K\n\016StudentRe" +
-      "quest\022\014\n\004name\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\022\014\n\004city" +
-      "\030\003 \001(\t\022\020\n\010province\030\004 \001(\t\"L\n\017StudentRespo" +
-      "nse\022\014\n\004name\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\022\014\n\004city\030\003" +
-      " \001(\t\022\020\n\010province\030\004 \001(\t\"K\n\023StudentRespons" +
-      "eList\0224\n\017studentResponse\030\001 \003(\0132\033.hellowo" +
-      "rld.StudentResponse2\277\002\n\016StudentService\022F" +
-      "\n\tgetByName\022\032.helloworld.StudentRequest\032" +
-      "\033.helloworld.StudentResponse\"\000\022G\n\010getByA" +
-      "ge\022\032.helloworld.StudentRequest\032\033.hellowo" +
-      "rld.StudentResponse\"\0000\001\022L\n\tgetByCity\022\032.h" +
-      "elloworld.StudentRequest\032\037.helloworld.St" +
-      "udentResponseList\"\000(\001\022N\n\rgetByProvince\022\032" +
-      ".helloworld.StudentRequest\032\033.helloworld." +
-      "StudentResponse\"\000(\0010\001B*\n\030io.grpc.example" +
-      "s.studentB\014StudentProtoP\001b\006proto3"
+      "\n\rStudent.proto\022\030io.grpc.examples.studen" +
+      "t\"K\n\016StudentRequest\022\014\n\004name\030\001 \001(\t\022\013\n\003age" +
+      "\030\002 \001(\005\022\014\n\004city\030\003 \001(\t\022\020\n\010province\030\004 \001(\t\"L" +
+      "\n\017StudentResponse\022\014\n\004name\030\001 \001(\t\022\013\n\003age\030\002" +
+      " \001(\005\022\014\n\004city\030\003 \001(\t\022\020\n\010province\030\004 \001(\t\"Y\n\023" +
+      "StudentResponseList\022B\n\017studentResponse\030\001" +
+      " \003(\0132).io.grpc.examples.student.StudentR" +
+      "esponse2\257\003\n\016StudentService\022b\n\tgetByName\022" +
+      "(.io.grpc.examples.student.StudentReques" +
+      "t\032).io.grpc.examples.student.StudentResp" +
+      "onse\"\000\022c\n\010getByAge\022(.io.grpc.examples.st" +
+      "udent.StudentRequest\032).io.grpc.examples." +
+      "student.StudentResponse\"\0000\001\022h\n\tgetByCity" +
+      "\022(.io.grpc.examples.student.StudentReque" +
+      "st\032-.io.grpc.examples.student.StudentRes" +
+      "ponseList\"\000(\001\022j\n\rgetByProvince\022(.io.grpc" +
+      ".examples.student.StudentRequest\032).io.gr" +
+      "pc.examples.student.StudentResponse\"\000(\0010" +
+      "\001B*\n\030io.grpc.examples.studentB\014StudentPr" +
+      "otoP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -67,23 +71,23 @@ public final class StudentProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_helloworld_StudentRequest_descriptor =
+    internal_static_io_grpc_examples_student_StudentRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_helloworld_StudentRequest_fieldAccessorTable = new
+    internal_static_io_grpc_examples_student_StudentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_helloworld_StudentRequest_descriptor,
+        internal_static_io_grpc_examples_student_StudentRequest_descriptor,
         new java.lang.String[] { "Name", "Age", "City", "Province", });
-    internal_static_helloworld_StudentResponse_descriptor =
+    internal_static_io_grpc_examples_student_StudentResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_helloworld_StudentResponse_fieldAccessorTable = new
+    internal_static_io_grpc_examples_student_StudentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_helloworld_StudentResponse_descriptor,
+        internal_static_io_grpc_examples_student_StudentResponse_descriptor,
         new java.lang.String[] { "Name", "Age", "City", "Province", });
-    internal_static_helloworld_StudentResponseList_descriptor =
+    internal_static_io_grpc_examples_student_StudentResponseList_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_helloworld_StudentResponseList_fieldAccessorTable = new
+    internal_static_io_grpc_examples_student_StudentResponseList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_helloworld_StudentResponseList_descriptor,
+        internal_static_io_grpc_examples_student_StudentResponseList_descriptor,
         new java.lang.String[] { "StudentResponse", });
   }
 

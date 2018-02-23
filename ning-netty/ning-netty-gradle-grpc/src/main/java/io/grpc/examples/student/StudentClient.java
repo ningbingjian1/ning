@@ -115,10 +115,10 @@ public class StudentClient {
     }
     public static void main(String[] args) throws InterruptedException {
         StudentClient client = new StudentClient("localhost",9981);
-        //client.testGetByName();
+        client.testGetByName();
         //client.testGetByAge();
         //client.testGetByCity();
-        client.testGetByProvince();
+        //client.testGetByProvince();
     }
 
 

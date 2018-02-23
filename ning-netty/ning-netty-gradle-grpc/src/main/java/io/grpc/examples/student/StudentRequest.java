@@ -4,11 +4,11 @@
 package io.grpc.examples.student;
 
 /**
- * Protobuf type {@code helloworld.StudentRequest}
+ * Protobuf type {@code io.grpc.examples.student.StudentRequest}
  */
 public  final class StudentRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:helloworld.StudentRequest)
+    // @@protoc_insertion_point(message_implements:io.grpc.examples.student.StudentRequest)
     StudentRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use StudentRequest.newBuilder() to construct.
@@ -90,12 +90,12 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentRequest_descriptor;
+    return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentRequest_descriptor;
   }
 
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentRequest_fieldAccessorTable
+    return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             io.grpc.examples.student.StudentRequest.class, io.grpc.examples.student.StudentRequest.Builder.class);
   }
@@ -393,20 +393,20 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code helloworld.StudentRequest}
+   * Protobuf type {@code io.grpc.examples.student.StudentRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:helloworld.StudentRequest)
+      // @@protoc_insertion_point(builder_implements:io.grpc.examples.student.StudentRequest)
       io.grpc.examples.student.StudentRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentRequest_descriptor;
+      return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentRequest_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentRequest_fieldAccessorTable
+      return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               io.grpc.examples.student.StudentRequest.class, io.grpc.examples.student.StudentRequest.Builder.class);
     }
@@ -441,7 +441,7 @@ private static final long serialVersionUID = 0L;
 
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.grpc.examples.student.StudentProto.internal_static_helloworld_StudentRequest_descriptor;
+      return io.grpc.examples.student.StudentProto.internal_static_io_grpc_examples_student_StudentRequest_descriptor;
     }
 
     public io.grpc.examples.student.StudentRequest getDefaultInstanceForType() {
@@ -788,10 +788,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:helloworld.StudentRequest)
+    // @@protoc_insertion_point(builder_scope:io.grpc.examples.student.StudentRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:helloworld.StudentRequest)
+  // @@protoc_insertion_point(class_scope:io.grpc.examples.student.StudentRequest)
   private static final io.grpc.examples.student.StudentRequest DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new io.grpc.examples.student.StudentRequest();

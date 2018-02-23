@@ -1,3 +1,4 @@
+*.fileOut2
 **/pom.xml.versionsBackup
 **/target/
 **/out/

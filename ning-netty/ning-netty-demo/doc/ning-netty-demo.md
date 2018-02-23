@@ -73,7 +73,24 @@ NingChatClient:连接服务端后从控制台读取消息发送给服务端，�
 读写空闲检测
 
 ## 知识点
-IdleStateHandler ：负责检测服务端和客户端的空闲策略 空闲包含读空闲 写空闲  读写空闲 
+IdleStateHandler ：负责检测服务端和客户端的空闲策略 空闲包含读空闲 写空闲  读写空闲
+
+
+# nio包的例子
+nio是一些测试nio使用的例子
+
+# NIO的原理
+http://www.importnew.com/19816.html
+
+
+# nio.blockchat
+这是使用阻塞IO的聊天程序，客户端发送消息，服务端转发给其他客户端。
+# nio.chat
+使用NIO写的聊天程序 ，客户端发送消息给服务端，服务端负责转发给其他客户端
+
+
+
+ 
 
     
 
