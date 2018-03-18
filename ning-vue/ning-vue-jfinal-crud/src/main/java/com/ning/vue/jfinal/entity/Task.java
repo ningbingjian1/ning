@@ -8,7 +8,7 @@ public class Task extends Model<Task>{
     private String name ;
     private String task_time;
     private String desc;
-    private boolean deleted;
+    private boolean deleted = true;
 
 
     public int getId() {
