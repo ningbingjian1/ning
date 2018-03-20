@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务列表</title>
+
+</head>
+<body>
+
+    <div id="add-app">
+        <task-add></task-add>
+    </div>
+
+    <div id="list-app">
+        <task-list></task-list>
+    </div>
+
+
+
+
+    <template id="task-list-tml">
+        <div>
+            <h1>任务列表 <span v-show="remaing">({{remaing}})</span></h1>
+            <ul>
+                <li v-show="! task.deleted" v-for="(task,idx) in sort_tasks">{{idx}} - {{task.id}} - {{task.name}} - {{task.task_time}} {{task.desc}}
+                    <button @click="deleteTask(idx)">删除</button>
+                </li>
+
+            </ul>
+        </div>
+    </template>
+
+
+
+    <template id="task-add-tml">
+        <form @submit.prevent="doSubmit" id="addForm">
+            <fieldset>
+                <input type="hidden" name="deleted" value="1">
+                <label for="name">name (必需)</label> <br>
+                name: <input type="text" id="name" name="name" v-model="task.name" required> <br>
+                task_time: <input type="text" name="task_time" v-model="task.task_time"><br>
+                desc: <br>
+                <textarea name="desc" id="desc" cols="30" rows="10" v-model="task.desc">
+                </textarea> <br>
+                <input type="submit" value="提交">
+            </fieldset>
+
+        </form>
+
+    </template>
+    <script src="js/constant.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.5.15/vue.js"></script>
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.5/lodash.core.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.js"></script>
+    <script type="text/javascript">
+        Vue.component("task-list",{
+            template:"#task-list-tml",
+            data:function(){
+                return {
+                    tasks:[
+                    ]
+                }
+            },
+            crossDomain: true,
+            created:function(){
+                var vm = this;
+                $.getJSON(SERVER_URL + 'task/list',function (ret) {
+                    if(ret != undefined && ret.state == 'ok'){
+                        vm.tasks =  ret.data;
+                    }
+
+                });
+            },
+            computed: {
+                sort_tasks: function () {
+                    newtasks =  this.tasks.sort(function (a,b) {
+                       return a.task_time < b.task_time;
+                    });
+                    return newtasks;
+                },
+                remaing:function () {
+                    return this.tasks.filter(function (task) {
+                        return ! task.deleted;
+                    }).length;
+                }
+            },
+            methods:{
+                deleteTask:function (idx) {
+                    this.tasks.splice(idx,1);
+                }
+            }
+        });
+        Vue.component('task-form',{
+
+        });
+        var vm = new Vue({
+            el:"#list-app"
+        });
+
+        Vue.component("task-add", {
+            template: "#task-add-tml",
+            data:function () {
+                return {
+                    task:{}
+                }
+
+            },
+            methods:{
+                doSubmit:function (e) {
+                    $("#addForm").validate();
+                    console.log(this.task);
+                }
+            }
+        });
+        var addVm = new Vue({
+           el:"#add-app"
+        });
+
+
+    </script>
+
+
+</body>
+</html>

@@ -16,7 +16,7 @@
 
     <properties>
         <junit.version>4.11</junit.version>
-        <netty.version>4.1.12.Final</netty.version>
+        <netty.version>4.1.15.Final</netty.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -26,11 +26,14 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
+            <version>4.1.22.Final</version>
         </dependency>
+
+
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>

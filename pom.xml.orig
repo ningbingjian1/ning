@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ning</groupId>
+    <artifactId>ning</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ning-util/ning-util-scala</module>
+        <module>ning-hibernate/ning-hibernate-heima</module>
+        <module>ning-hibernate/ning-hibernate-heima-crm</module>
+        <module>ning-storm/ning-storm-demo</module>
+        <module>ning-hadoop/ning-hadoop-yarn</module>
+        <module>ning-util/ning-util-java</module>
+        <module>ning-util/ning-util-log/ning-util-logback</module>
+        <module>ning-util/ning-util-log/ning-util-logback-demo</module>
+        <module>ning-spark/ning-spark-demo</module>
+        <module>ning-spark/ning-spark1.6x-demo</module>
+        <module>ning-netty/ning-netty-demo</module>
+        <module>ning-elasticsearch/ning-elasticsearch-demo</module>
+        <module>ning-redis/ning-redis3-util</module>
+        <module>ning-kafka/ning-kafka0.8-util</module>
+<<<<<<< HEAD
+        <module>ning-test/java-test</module>
+        <module>ning-jfina/ning-jfinal-test</module>
+        <module>ning-vue/ning-vue-jfinal-crud</module>
+
+=======
+        <module>../ning-vue/ning/ning-vuej-final-crud</module>
+        <module>ning-vue/ning-vue-jfinal-crud</module>
+>>>>>>> bd79fa268eb43ed9eae5a8ab2f51947397b2e96f
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.11</junit.version>
+        <commons-lang3.version>3.3</commons-lang3.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
