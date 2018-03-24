@@ -22,9 +22,16 @@
         <module>ning-elasticsearch/ning-elasticsearch-demo</module>
         <module>ning-redis/ning-redis3-util</module>
         <module>ning-kafka/ning-kafka0.8-util</module>
-		<module>ning-test/java-test</module>
-		<module>ning-vue/ning-vue-jfinal-crud</module>
-		<module>ning-vue/ning-vue-jfinal-crud</module> </modules>
+<<<<<<< HEAD
+        <module>ning-test/java-test</module>
+        <module>ning-jfina/ning-jfinal-test</module>
+        <module>ning-vue/ning-vue-jfinal-crud</module>
+
+=======
+        <module>../ning-vue/ning/ning-vuej-final-crud</module>
+        <module>ning-vue/ning-vue-jfinal-crud</module>
+>>>>>>> bd79fa268eb43ed9eae5a8ab2f51947397b2e96f
+    </modules>
     <packaging>pom</packaging>
 
     <properties>
