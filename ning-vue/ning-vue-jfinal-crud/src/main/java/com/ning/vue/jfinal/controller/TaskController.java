@@ -10,9 +10,11 @@ import java.util.List;
 public class TaskController  extends Controller{
     private TaskService taskService = TaskService.taskService;
 
-    public String save(){
+    public void save(Task task){
+        Ret ret = Ret.ok();
+        System.out.println(getRequest().getParameter("task"));
+        renderJson(ret );
 
-        return null;
     }
     public void list(){
         List<Task> tasks = taskService.queryAll();
@@ -21,9 +23,8 @@ public class TaskController  extends Controller{
 
         System.out.println(ret.toJson());
 
-        renderJson(ret);
 
-        getResponse().setHeader("Access-Control-Allow-Origin","*");
+        renderJson(ret );
 
     }
 

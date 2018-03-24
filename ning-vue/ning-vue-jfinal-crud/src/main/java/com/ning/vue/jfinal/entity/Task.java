@@ -50,4 +50,15 @@ public class Task extends Model<Task>{
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", task_time='" + task_time + '\'' +
+                ", desc='" + desc + '\'' +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

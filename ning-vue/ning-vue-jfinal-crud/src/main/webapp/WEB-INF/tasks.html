@@ -36,12 +36,21 @@
         <form @submit.prevent="doSubmit" id="addForm">
             <fieldset>
                 <input type="hidden" name="deleted" value="1">
-                <label for="name">name (必需)</label> <br>
-                name: <input type="text" id="name" name="name" v-model="task.name" required> <br>
-                task_time: <input type="text" name="task_time" v-model="task.task_time"><br>
-                desc: <br>
-                <textarea name="desc" id="desc" cols="30" rows="10" v-model="task.desc">
-                </textarea> <br>
+
+                名称:
+                    <label for="name"></label>
+                    <input type="text" id="name" name="name" v-model="task.name" required> <br>
+                <br>
+                任务时间:
+                    <label for="task_time"></label>
+                    <input type="text" id="task_time" name="task_time" v-model="task.task_time" required><br>
+
+                <br>
+                详细内容: <br>
+                    <textarea name="desc" id="desc" cols="30" rows="10" v-model="task.desc" required>
+                    </textarea> <br>
+                    <label for="desc"></label> <br>
+                <br>
                 <input type="submit" value="提交">
             </fieldset>
 
@@ -109,8 +118,21 @@
             },
             methods:{
                 doSubmit:function (e) {
-                    $("#addForm").validate();
-                    console.log(this.task);
+                    var validateRet = $("#addForm").validate();
+                    var vm = this;
+                    if(validateRet.form()){
+                        $.ajax({
+                            type: 'POST',
+                            url: SERVER_URL + 'task/save',
+                            data: {"task":vm.task},
+                            success: function (data) {
+                                console.log(data)
+                            },
+                            dataType: "json"
+                        });
+                    }
+
+
                 }
             }
         });
