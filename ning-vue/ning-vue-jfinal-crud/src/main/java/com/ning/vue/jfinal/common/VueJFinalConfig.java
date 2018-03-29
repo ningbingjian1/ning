@@ -9,6 +9,8 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
+import com.ning.vue.jfinal.handler.AjaxRequestHandler;
+import com.ning.vue.jfinal.interceptor.GlobalInterceptor;
 
 import java.sql.Connection;
 
@@ -55,9 +57,9 @@ public class VueJFinalConfig extends JFinalConfig {
         _MappingKit.mapping(arp);
     }
     public void configInterceptor(Interceptors me) {
+        me.add(new GlobalInterceptor());
 
     }
     public void configHandler(Handlers me) {
-
     }
 }
