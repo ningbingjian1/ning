@@ -1,7 +1,7 @@
 package main
 //go build -o bin/goroute.exe  com.ning\oldboy\season1\day1\goroute\main
 import (
-	"com.ning/oldboy/season1/day1/goroute"
+	"com.ning/oldboy/season1/day01/goroute"
 	"fmt"
 )
 func main() {
