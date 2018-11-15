@@ -28,7 +28,7 @@ public class NingReadWriteCheckServerInitializer extends ChannelInitializer<Sock
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
         //读空闲检测  写空闲检测  读写空闲检测
-        pipeline.addLast(new IdleStateHandler(3,7,10, TimeUnit.SECONDS));
+        pipeline.addLast(new IdleStateHandler(3,5,10, TimeUnit.SECONDS));
         pipeline.addLast(new NingReadWriteCheckServerHandler());
 
     }

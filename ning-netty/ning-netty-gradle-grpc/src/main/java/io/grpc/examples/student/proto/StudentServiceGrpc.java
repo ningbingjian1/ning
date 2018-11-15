@@ -1,4 +1,4 @@
-package io.grpc.examples.student;
+package io.grpc.examples.student.proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
@@ -32,29 +32,29 @@ public final class StudentServiceGrpc {
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getGetByNameMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> METHOD_GET_BY_NAME = getGetByNameMethod();
+  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> METHOD_GET_BY_NAME = getGetByNameMethod();
 
-  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> getGetByNameMethod;
+  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> getGetByNameMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> getGetByNameMethod() {
-    io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponse> getGetByNameMethod;
+  public static io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> getGetByNameMethod() {
+    io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponse> getGetByNameMethod;
     if ((getGetByNameMethod = StudentServiceGrpc.getGetByNameMethod) == null) {
       synchronized (StudentServiceGrpc.class) {
         if ((getGetByNameMethod = StudentServiceGrpc.getGetByNameMethod) == null) {
           StudentServiceGrpc.getGetByNameMethod = getGetByNameMethod = 
-              io.grpc.MethodDescriptor.<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponse>newBuilder()
+              io.grpc.MethodDescriptor.<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "io.grpc.examples.student.StudentService", "getByName"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentRequest.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentResponse.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("getByName"))
                   .build();
           }
@@ -64,29 +64,29 @@ public final class StudentServiceGrpc {
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getGetByAgeMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> METHOD_GET_BY_AGE = getGetByAgeMethod();
+  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> METHOD_GET_BY_AGE = getGetByAgeMethod();
 
-  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> getGetByAgeMethod;
+  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> getGetByAgeMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> getGetByAgeMethod() {
-    io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponse> getGetByAgeMethod;
+  public static io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> getGetByAgeMethod() {
+    io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponse> getGetByAgeMethod;
     if ((getGetByAgeMethod = StudentServiceGrpc.getGetByAgeMethod) == null) {
       synchronized (StudentServiceGrpc.class) {
         if ((getGetByAgeMethod = StudentServiceGrpc.getGetByAgeMethod) == null) {
           StudentServiceGrpc.getGetByAgeMethod = getGetByAgeMethod = 
-              io.grpc.MethodDescriptor.<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponse>newBuilder()
+              io.grpc.MethodDescriptor.<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "io.grpc.examples.student.StudentService", "getByAge"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentRequest.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentResponse.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("getByAge"))
                   .build();
           }
@@ -96,29 +96,29 @@ public final class StudentServiceGrpc {
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getGetByCityMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponseList> METHOD_GET_BY_CITY = getGetByCityMethod();
+  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponseList> METHOD_GET_BY_CITY = getGetByCityMethod();
 
-  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponseList> getGetByCityMethod;
+  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponseList> getGetByCityMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponseList> getGetByCityMethod() {
-    io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponseList> getGetByCityMethod;
+  public static io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponseList> getGetByCityMethod() {
+    io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponseList> getGetByCityMethod;
     if ((getGetByCityMethod = StudentServiceGrpc.getGetByCityMethod) == null) {
       synchronized (StudentServiceGrpc.class) {
         if ((getGetByCityMethod = StudentServiceGrpc.getGetByCityMethod) == null) {
           StudentServiceGrpc.getGetByCityMethod = getGetByCityMethod = 
-              io.grpc.MethodDescriptor.<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponseList>newBuilder()
+              io.grpc.MethodDescriptor.<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponseList>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "io.grpc.examples.student.StudentService", "getByCity"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentRequest.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentResponseList.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentResponseList.getDefaultInstance()))
                   .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("getByCity"))
                   .build();
           }
@@ -128,29 +128,29 @@ public final class StudentServiceGrpc {
   }
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getGetByProvinceMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> METHOD_GET_BY_PROVINCE = getGetByProvinceMethod();
+  public static final io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> METHOD_GET_BY_PROVINCE = getGetByProvinceMethod();
 
-  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> getGetByProvinceMethod;
+  private static volatile io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> getGetByProvinceMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest,
-      io.grpc.examples.student.StudentResponse> getGetByProvinceMethod() {
-    io.grpc.MethodDescriptor<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponse> getGetByProvinceMethod;
+  public static io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest,
+      io.grpc.examples.student.proto.StudentResponse> getGetByProvinceMethod() {
+    io.grpc.MethodDescriptor<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponse> getGetByProvinceMethod;
     if ((getGetByProvinceMethod = StudentServiceGrpc.getGetByProvinceMethod) == null) {
       synchronized (StudentServiceGrpc.class) {
         if ((getGetByProvinceMethod = StudentServiceGrpc.getGetByProvinceMethod) == null) {
           StudentServiceGrpc.getGetByProvinceMethod = getGetByProvinceMethod = 
-              io.grpc.MethodDescriptor.<io.grpc.examples.student.StudentRequest, io.grpc.examples.student.StudentResponse>newBuilder()
+              io.grpc.MethodDescriptor.<io.grpc.examples.student.proto.StudentRequest, io.grpc.examples.student.proto.StudentResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "io.grpc.examples.student.StudentService", "getByProvince"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentRequest.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.grpc.examples.student.StudentResponse.getDefaultInstance()))
+                  io.grpc.examples.student.proto.StudentResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new StudentServiceMethodDescriptorSupplier("getByProvince"))
                   .build();
           }
@@ -194,8 +194,8 @@ public final class StudentServiceGrpc {
      * 一次请求  一次响应
      * </pre>
      */
-    public void getByName(io.grpc.examples.student.StudentRequest request,
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse> responseObserver) {
+    public void getByName(io.grpc.examples.student.proto.StudentRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getGetByNameMethod(), responseObserver);
     }
 
@@ -204,8 +204,8 @@ public final class StudentServiceGrpc {
      * 一次请求 流式响应
      * </pre>
      */
-    public void getByAge(io.grpc.examples.student.StudentRequest request,
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse> responseObserver) {
+    public void getByAge(io.grpc.examples.student.proto.StudentRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getGetByAgeMethod(), responseObserver);
     }
 
@@ -214,8 +214,8 @@ public final class StudentServiceGrpc {
      * 流式请求 一次响应
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentRequest> getByCity(
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponseList> responseObserver) {
+    public io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentRequest> getByCity(
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponseList> responseObserver) {
       return asyncUnimplementedStreamingCall(getGetByCityMethod(), responseObserver);
     }
 
@@ -224,8 +224,8 @@ public final class StudentServiceGrpc {
      *流式请求 流式响应
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentRequest> getByProvince(
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentRequest> getByProvince(
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse> responseObserver) {
       return asyncUnimplementedStreamingCall(getGetByProvinceMethod(), responseObserver);
     }
 
@@ -235,29 +235,29 @@ public final class StudentServiceGrpc {
             getGetByNameMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.grpc.examples.student.StudentRequest,
-                io.grpc.examples.student.StudentResponse>(
+                io.grpc.examples.student.proto.StudentRequest,
+                io.grpc.examples.student.proto.StudentResponse>(
                   this, METHODID_GET_BY_NAME)))
           .addMethod(
             getGetByAgeMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                io.grpc.examples.student.StudentRequest,
-                io.grpc.examples.student.StudentResponse>(
+                io.grpc.examples.student.proto.StudentRequest,
+                io.grpc.examples.student.proto.StudentResponse>(
                   this, METHODID_GET_BY_AGE)))
           .addMethod(
             getGetByCityMethod(),
             asyncClientStreamingCall(
               new MethodHandlers<
-                io.grpc.examples.student.StudentRequest,
-                io.grpc.examples.student.StudentResponseList>(
+                io.grpc.examples.student.proto.StudentRequest,
+                io.grpc.examples.student.proto.StudentResponseList>(
                   this, METHODID_GET_BY_CITY)))
           .addMethod(
             getGetByProvinceMethod(),
             asyncBidiStreamingCall(
               new MethodHandlers<
-                io.grpc.examples.student.StudentRequest,
-                io.grpc.examples.student.StudentResponse>(
+                io.grpc.examples.student.proto.StudentRequest,
+                io.grpc.examples.student.proto.StudentResponse>(
                   this, METHODID_GET_BY_PROVINCE)))
           .build();
     }
@@ -289,8 +289,8 @@ public final class StudentServiceGrpc {
      * 一次请求  一次响应
      * </pre>
      */
-    public void getByName(io.grpc.examples.student.StudentRequest request,
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse> responseObserver) {
+    public void getByName(io.grpc.examples.student.proto.StudentRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getGetByNameMethod(), getCallOptions()), request, responseObserver);
     }
@@ -300,8 +300,8 @@ public final class StudentServiceGrpc {
      * 一次请求 流式响应
      * </pre>
      */
-    public void getByAge(io.grpc.examples.student.StudentRequest request,
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse> responseObserver) {
+    public void getByAge(io.grpc.examples.student.proto.StudentRequest request,
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getGetByAgeMethod(), getCallOptions()), request, responseObserver);
     }
@@ -311,8 +311,8 @@ public final class StudentServiceGrpc {
      * 流式请求 一次响应
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentRequest> getByCity(
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponseList> responseObserver) {
+    public io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentRequest> getByCity(
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponseList> responseObserver) {
       return asyncClientStreamingCall(
           getChannel().newCall(getGetByCityMethod(), getCallOptions()), responseObserver);
     }
@@ -322,8 +322,8 @@ public final class StudentServiceGrpc {
      *流式请求 流式响应
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentRequest> getByProvince(
-        io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentRequest> getByProvince(
+        io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse> responseObserver) {
       return asyncBidiStreamingCall(
           getChannel().newCall(getGetByProvinceMethod(), getCallOptions()), responseObserver);
     }
@@ -355,7 +355,7 @@ public final class StudentServiceGrpc {
      * 一次请求  一次响应
      * </pre>
      */
-    public io.grpc.examples.student.StudentResponse getByName(io.grpc.examples.student.StudentRequest request) {
+    public io.grpc.examples.student.proto.StudentResponse getByName(io.grpc.examples.student.proto.StudentRequest request) {
       return blockingUnaryCall(
           getChannel(), getGetByNameMethod(), getCallOptions(), request);
     }
@@ -365,8 +365,8 @@ public final class StudentServiceGrpc {
      * 一次请求 流式响应
      * </pre>
      */
-    public java.util.Iterator<io.grpc.examples.student.StudentResponse> getByAge(
-        io.grpc.examples.student.StudentRequest request) {
+    public java.util.Iterator<io.grpc.examples.student.proto.StudentResponse> getByAge(
+        io.grpc.examples.student.proto.StudentRequest request) {
       return blockingServerStreamingCall(
           getChannel(), getGetByAgeMethod(), getCallOptions(), request);
     }
@@ -398,8 +398,8 @@ public final class StudentServiceGrpc {
      * 一次请求  一次响应
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.grpc.examples.student.StudentResponse> getByName(
-        io.grpc.examples.student.StudentRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<io.grpc.examples.student.proto.StudentResponse> getByName(
+        io.grpc.examples.student.proto.StudentRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getGetByNameMethod(), getCallOptions()), request);
     }
@@ -428,12 +428,12 @@ public final class StudentServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_GET_BY_NAME:
-          serviceImpl.getByName((io.grpc.examples.student.StudentRequest) request,
-              (io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse>) responseObserver);
+          serviceImpl.getByName((io.grpc.examples.student.proto.StudentRequest) request,
+              (io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse>) responseObserver);
           break;
         case METHODID_GET_BY_AGE:
-          serviceImpl.getByAge((io.grpc.examples.student.StudentRequest) request,
-              (io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse>) responseObserver);
+          serviceImpl.getByAge((io.grpc.examples.student.proto.StudentRequest) request,
+              (io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -447,10 +447,10 @@ public final class StudentServiceGrpc {
       switch (methodId) {
         case METHODID_GET_BY_CITY:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getByCity(
-              (io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponseList>) responseObserver);
+              (io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponseList>) responseObserver);
         case METHODID_GET_BY_PROVINCE:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getByProvince(
-              (io.grpc.stub.StreamObserver<io.grpc.examples.student.StudentResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<io.grpc.examples.student.proto.StudentResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -463,7 +463,7 @@ public final class StudentServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return io.grpc.examples.student.StudentProto.getDescriptor();
+      return io.grpc.examples.student.proto.StudentProto.getDescriptor();
     }
 
     @java.lang.Override

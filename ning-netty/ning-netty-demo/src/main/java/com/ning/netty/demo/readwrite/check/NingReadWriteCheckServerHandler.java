@@ -17,6 +17,7 @@ public class NingReadWriteCheckServerHandler extends ChannelInboundHandlerAdapte
         String eventType = null ;
         Channel channel = ctx.channel();
         if(evt instanceof IdleStateEvent){
+            System.out.println(((IdleStateEvent) evt).state());
             switch (((IdleStateEvent) evt).state()){
                 case ALL_IDLE:
                     eventType = "读写空闲";
@@ -29,7 +30,6 @@ public class NingReadWriteCheckServerHandler extends ChannelInboundHandlerAdapte
                     break;
             }
             System.out.println(channel.remoteAddress() +" 超时事件:" + eventType);
-            channel.close();
 
         }
     }

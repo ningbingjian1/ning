@@ -1,7 +1,7 @@
 syntax = "proto3";
 package io.grpc.examples.student;
 option java_multiple_files = true;
-option java_package = "io.grpc.examples.student";
+option java_package = "io.grpc.examples.student.proto";
 option java_outer_classname = "StudentProto";
 
 

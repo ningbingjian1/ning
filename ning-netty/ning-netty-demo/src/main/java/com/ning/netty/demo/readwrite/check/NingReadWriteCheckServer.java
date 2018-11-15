@@ -1,12 +1,12 @@
 package com.ning.netty.demo.readwrite.check;
 
-import com.ning.netty.demo.echo.NingEchoServerHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 import java.net.InetSocketAddress;
 
@@ -23,12 +23,12 @@ public class NingReadWriteCheckServer {
     }
     public void start() throws Exception{
         EventLoopGroup group = new NioEventLoopGroup();
-        final ChannelHandler serverHandler = new NingEchoServerHandler();
         try{
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(group)
                     .channel(NioServerSocketChannel.class)
                     .localAddress(new InetSocketAddress(port))
+                    .handler(new LoggingHandler(LogLevel.DEBUG))
                     .childHandler(new NingReadWriteCheckServerInitializer());
             ChannelFuture f = bootstrap.bind().sync();
             System.out.println(NingReadWriteCheckServer.class.getSimpleName() + " starting and listening on " + f.channel().localAddress());
