@@ -61,6 +61,6 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
 
     @Override
     public StreamObserver<StudentRequest> getByProvince(StreamObserver<StudentResponse> responseObserver) {
-
+        return null;
     }
 }
