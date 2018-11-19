@@ -22,6 +22,7 @@ public class StudentClient {
         //testGetByNames();
         //testGetByAge();
         //testGetByCity();
+        testGetByProvince();
         return;
 
     }
@@ -30,6 +31,7 @@ public class StudentClient {
         ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost",8899 )
                 .usePlaintext(true)
                 .build();
+        //阻塞式客户端
         StudentServiceGrpc.StudentServiceBlockingStub studentServiceBlockingStub = StudentServiceGrpc
                 .newBlockingStub(managedChannel);
         StudentResponse response =
@@ -75,6 +77,38 @@ public class StudentClient {
         requestStreamObserver.onNext(StudentRequest.newBuilder().setName("u1").setCity("city1").build());
         requestStreamObserver.onNext(StudentRequest.newBuilder().setName("u2").setCity("city2").build());
         requestStreamObserver.onNext(StudentRequest.newBuilder().setName("u3").setCity("city3").build());
+        requestStreamObserver.onCompleted();
+        System.in.read();
+    }
+    public static void testGetByProvince() throws Exception{
+        StreamObserver<StudentResponse> responseObserver = new StreamObserver<StudentResponse>() {
+            @Override
+            public void onNext(StudentResponse value) {
+                    System.out.println(value);
+            }
+            @Override
+            public void onError(Throwable t) {
+                System.out.println(t.getMessage());
+            }
+            @Override
+            public void onCompleted() {
+                System.out.println("onCompleted");
+            }
+        };
+
+        ManagedChannel managedChannel = ManagedChannelBuilder.forAddress("localhost",8899 )
+                .usePlaintext(true)
+                .build();
+        //异步的调用
+        StudentServiceGrpc.StudentServiceStub stub = StudentServiceGrpc.newStub(managedChannel);
+        StreamObserver<StudentRequest> requestStreamObserver = stub.getByProvince(responseObserver);
+        //构造一条流请求
+        requestStreamObserver.onNext(StudentRequest.newBuilder().setName("u1").setCity("city1").build());
+        //构造一条流请求
+        requestStreamObserver.onNext(StudentRequest.newBuilder().setName("u2").setCity("city2").build());
+        //构造一条流请求
+        requestStreamObserver.onNext(StudentRequest.newBuilder().setName("u3").setCity("city3").build());
+        //标记流请求结束
         requestStreamObserver.onCompleted();
         System.in.read();
     }

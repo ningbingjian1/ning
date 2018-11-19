@@ -12,6 +12,10 @@ public class StudentServer {
                 .addService(new StudentServiceImpl())
                 .build()
                 .start();
+        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+            System.out.println("student server shutdown ");
+            this.server.shutdown();
+        }));
     }
     private void awaitTemination() throws InterruptedException {
         if(null != this.server){

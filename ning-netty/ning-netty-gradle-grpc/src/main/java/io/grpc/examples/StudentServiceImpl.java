@@ -13,6 +13,7 @@ import io.grpc.examples.student.proto.StudentServiceGrpc;
 import io.grpc.stub.StreamObserver;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBase {
     @Override
@@ -25,7 +26,9 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
                 .setAge(i)
                 .setCity("city" + i )
                 .build();
+        //响应客户端请求
         responseObserver.onNext(response);
+        //表示本次请求生效
         responseObserver.onCompleted();
     }
 
@@ -67,7 +70,30 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
 
     @Override
     public StreamObserver<StudentRequest> getByProvince(StreamObserver<StudentResponse> responseObserver) {
-        return null;
+        final AtomicInteger COUNTER = new AtomicInteger(0);
+        return new StreamObserver<StudentRequest>() {
+            @Override
+            public void onNext(StudentRequest value) {
+                System.out.println(" receive client request : " + value);
+                int i = COUNTER.incrementAndGet();
+                StudentResponse response  = StudentResponse.newBuilder()
+                        .setName("u" + i)
+                        .setProvince("province" + i)
+                        .build();
+                 responseObserver.onNext(response);
+                System.out.println();
+
+            }
+            @Override
+            public void onError(Throwable t) {
+                System.out.println("client error  : ");
+            }
+            @Override
+            public void onCompleted() {
+                System.out.println("client onCompleted");
+                responseObserver.onCompleted();
+            }
+        };
     }
 }
 
