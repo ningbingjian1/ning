@@ -8,15 +8,30 @@ import java.util.Random;
  * ByteBuffer读写的例子
  */
 public class ByteBufferCase {
+    public static void test1(){
+        ByteBuffer byteBuffer = ByteBuffer.allocate(10);
+        byteBuffer.put((byte)1);
+        byteBuffer.put((byte)2);
+        byteBuffer.flip();
+        System.out.println(byteBuffer.limit());
+        byteBuffer.get();//1
+        byteBuffer.get();//2
+        byteBuffer.clear();
+        byteBuffer.put((byte)3);
+        byteBuffer.put((byte)4);
+
+    }
     public static void main(String[] args) {
-        ByteBuffer buf = ByteBuffer.allocate(1024);
+        test1();
+       /* ByteBuffer buf = ByteBuffer.allocate(1024);
         for(int i = 0 ; i < 10 ;i ++){
             //每次往buf写入数据都要调用clean
             buf.clear();
             write(10,buf);
+            //flip专门用来转换读写
             buf.flip();
             read(buf);
-        }
+        }*/
 
     }
     static void read(ByteBuffer buf){
